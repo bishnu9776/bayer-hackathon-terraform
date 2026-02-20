@@ -12,3 +12,10 @@ module "vpc" {
   azs            = ["ap-south-1a", "ap-south-1b"]
   env            = terraform.workspace
 }
+
+module "eks" {
+  source = "./modules/eks"
+
+  env             = terraform.workspace
+  private_subnets = module.vpc.private_subnets
+}
